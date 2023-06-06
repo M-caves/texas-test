@@ -30,3 +30,23 @@ export class TeacherComponent implements OnInit {
     })
   }
 }
+
+
+
+// git command
+/*
+
+1. git init
+2. git status
+3. git add 'filename.html' , 'script.js'
+   git add .
+4. git commit -m "commit msg"
+ 
+5. git checkout -b branch-rajan (to create a new branch)
+  git checkout branch-rajan (to switch to existig branch)
+
+6. git push origin branch-rajan
+
+7. git reset (to remove the file from git add)
+
+*/
