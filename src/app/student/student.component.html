@@ -1,0 +1,28 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h1>HELLO</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #testModal let-modal>
+  <div class="modal-header modal-header-blue">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ "Test Modal Popup" }}
+    </h4>
+    <a href="javascript:void(0)" class="ic-close text-black small" aria-label="Close"
+      (click)="modal.dismiss('Cross click')">
+    </a>
+  </div>
+  <div class="modal-body">
+    <h1>I AM MODAL BODY</h1>
+  </div>
+</ng-template>

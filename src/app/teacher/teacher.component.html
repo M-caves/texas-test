@@ -1,0 +1,25 @@
+
+<div class="conntainer">
+  <div class="col-md-6">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>userId</th>
+          <th>title</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of datas">
+          <td>{{item.userid}}</td>
+          <td>{{item.title}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="getDetail(item.id)">
+              Detail
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
