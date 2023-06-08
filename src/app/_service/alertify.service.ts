@@ -11,5 +11,8 @@ constructor() { }
 showSuccessMessage(msg:String){
   alertify.success(msg);
 }
-
+showErrorMessage(msg: String){
+  alertify.console.error(msg);
+  
+}
 }
