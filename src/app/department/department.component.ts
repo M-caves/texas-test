@@ -25,7 +25,7 @@ export class DepartmentComponent implements OnInit {
     .subscribe((resp:any) => {
       debugger
       
-      this.departmentList = resp.data!.map((x) => {return x.DepartmentName != ''})
+      this.departmentList = resp.data!.map((x:any) => {return x.DepartmentName != ''})
     })
   }
   onSubmit(){
