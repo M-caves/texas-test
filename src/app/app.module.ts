@@ -8,13 +8,21 @@ import { FormsModule } from '@angular/forms';
 import { StudentComponent } from './student/student.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { DepartmentComponent } from './department/department.component';
+import { HeaderComponent } from './page-layout/header/header.component';
+import { FooterComponent } from './page-layout/footer/footer.component';
+import { SidebarComponent } from './page-layout/sidebar/sidebar.component';
+import { TemplateDashboardComponent } from './template-dashboard/template-dashboard.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       StudentComponent,
       TeacherComponent,
-      DepartmentComponent
+      DepartmentComponent,
+      HeaderComponent,
+      FooterComponent,
+      SidebarComponent,
+      TemplateDashboardComponent
    ],
   imports: [
     BrowserModule,
