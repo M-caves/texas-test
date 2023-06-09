@@ -41,6 +41,7 @@
                   <th>Department Name</th>
                   <th>Department Code</th>
                   <th>Order Key</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,6 +49,10 @@
                   <td>{{item.DepartmentName}}</td>
                   <td>{{item.DepartmentCode}}</td>
                   <td>{{item.OrderKey}}</td>
+                  <td>
+                    <button type="button" (click)="onEdit(item)" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>EDIT</button>
+                    <button type="button" (click)="onDelete(item.DepartmentID)" class="btn btn-danger btn-sm" style="margin-left:5px;"><i class="fa fa-trash"></i> Delete</button>
+                  </td>
                 </tr>
               </tbody>
             </table>

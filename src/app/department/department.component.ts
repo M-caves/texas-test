@@ -9,41 +9,70 @@ import { AlertifyService } from '../_service/alertify.service';
 })
 export class DepartmentComponent implements OnInit {
 
-  model :any = {}
-  departmentList : any = []
+  model: any = {}
+  departmentList: any = []
   constructor(private deptService: DepartmentService,
-              private alrt : AlertifyService
-    ) { 
-      this.loadDepartmentList()
-    }
+    private alrt: AlertifyService
+  ) {
+    this.loadDepartmentList()
+  }
 
   ngOnInit() {
   }
 
-  loadDepartmentList(){
+  loadDepartmentList() {
     this.deptService.getDepartmentList()
-    .subscribe((resp:any) => {
-      debugger
-      
-      this.departmentList = resp.data!.map((x:any) => {return x.DepartmentName != ''})
-    })
+      .subscribe((resp: any) => {
+        this.departmentList = resp.data!.filter((x: any) => {
+          if (x.DepartmentName != '') {
+            return x;
+          }
+        })
+
+      })
   }
-  onSubmit(){
+  onSubmit() {
     this.model.ParentDepartmentID = Number(this.model.ParentDepartmentID);
     this.model.OrderKey = Number(this.model.OrderKey);
     
+    this.model.DepartmentID = Number(this.model.DepartmentID) || 0;
+
     this.deptService.saveNewDepartment(this.model)
-    .subscribe((resp:any) => {
-      if(resp["Success"] == true){
-        this.alrt.showSuccessMessage(resp["Message"]);
-        this.clearForm();
-      }else{
-        this.alrt.showErrorMessage(resp["Message"]);
-      }
-    })
+      .subscribe((resp: any) => {
+        if (resp["Success"] == true) {
+          this.alrt.showSuccessMessage(resp["Message"]);
+          this.clearForm();
+          this.loadDepartmentList();
+        } else {
+          this.alrt.showErrorMessage(resp["Message"]);
+        }
+      })
   }
 
-  clearForm(){
+  clearForm() {
     this.model = {};
+  }
+
+  onDelete(id: number) {
+    var ok = confirm('are you sure to delete data?')
+    if (ok) {
+      this.deptService.deleteDepartment(id)
+        .subscribe((x: any) => {
+          if (x.Success) {
+            this.alrt.showSuccessMessage(x.Message);
+            this.loadDepartmentList();
+          } else {
+            this.alrt.showErrorMessage(x.Message);
+          }
+        })
+    }
+  }
+  onEdit(item: any) {
+    console.log(item);
+    this.model.DepartmentName = item.DepartmentName;
+    this.model.DepartmentCode = item.DepartmentCode;
+    this.model.OrderKey = item.OrderKey;
+    this.model.ParentDepartmentID = item.ParentDepartmentID;
+    this.model.DepartmentID = item.DepartmentID;
   }
 }
