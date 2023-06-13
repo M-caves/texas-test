@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../_service/department.service';
 import { AlertifyService } from '../_service/alertify.service';
+import Handsontable from 'handsontable';
+import { getData } from "./../_utils/constants";
+import {
+  alignHeaders,
+  drawCheckboxInRowHeaders,
+  addClassesToRows,
+  changeCheckboxCell
+} from "./../_utils/hooks-callback";
 
 @Component({
   selector: 'app-department',
@@ -11,13 +19,45 @@ export class DepartmentComponent implements OnInit {
 
   model: any = {}
   departmentList: any = []
+  columns : any = [];
+
+  dataset = getData();
+  alignHeaders = alignHeaders;
+  drawCheckboxInRowHeaders = drawCheckboxInRowHeaders;
+  addClassesToRows = addClassesToRows;
+  changeCheckboxCell = changeCheckboxCell;
+  colHeaders = [
+    "Company name",
+    "Country",
+    "Name",
+    "Sell date",
+    "Order ID",
+    "In stock",
+    "Qty",
+    "Progress",
+    "Rating"
+  ];
+  hiddenColumns = {
+    indicators: true,
+  };
+  licenseKey = "non-commercial-and-evaluation";
+
   constructor(private deptService: DepartmentService,
     private alrt: AlertifyService
   ) {
     this.loadDepartmentList()
+    this.manageColumns()
   }
 
   ngOnInit() {
+  }
+
+  manageColumns() {
+    this.columns = [
+      { keyName: 'Department Name', keyValue: 'DepartmentName' },
+      { keyName: 'Department Code', keyValue: 'DepartmentCode' },
+      { keyName: 'Order Key', keyValue: 'OrderKey' },
+    ];
   }
 
   loadDepartmentList() {
@@ -34,7 +74,7 @@ export class DepartmentComponent implements OnInit {
   onSubmit() {
     this.model.ParentDepartmentID = Number(this.model.ParentDepartmentID);
     this.model.OrderKey = Number(this.model.OrderKey);
-    
+
     this.model.DepartmentID = Number(this.model.DepartmentID) || 0;
 
     this.deptService.saveNewDepartment(this.model)

@@ -12,6 +12,8 @@ import { HeaderComponent } from './page-layout/header/header.component';
 import { FooterComponent } from './page-layout/footer/footer.component';
 import { SidebarComponent } from './page-layout/sidebar/sidebar.component';
 import { TemplateDashboardComponent } from './template-dashboard/template-dashboard.component';
+import { HotTableModule } from '@handsontable/angular';
+import { DDataListComponent } from './shared/data-list/data-list/data-list.component';
 
 @NgModule({
   declarations: [				
@@ -22,13 +24,15 @@ import { TemplateDashboardComponent } from './template-dashboard/template-dashbo
       HeaderComponent,
       FooterComponent,
       SidebarComponent,
-      TemplateDashboardComponent
+      TemplateDashboardComponent,
+      DDataListComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HotTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

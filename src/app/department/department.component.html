@@ -5,20 +5,20 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <label>Department Name</label><br/>
+              <label>Department Name</label><br />
               <input type="text" class="form-control" name="DepartmentName" [(ngModel)]="model!.DepartmentName" />
             </div>
             <div class="col-md-12">
-              <label>Department Code</label><br/>
-              <input type="text" class="form-control" name="DepartmentCode"  [(ngModel)]="model!.DepartmentCode"/>
+              <label>Department Code</label><br />
+              <input type="text" class="form-control" name="DepartmentCode" [(ngModel)]="model!.DepartmentCode" />
             </div>
             <div class="col-md-12">
-              <label>Order Key</label><br/>
-              <input type="number" class="form-control" name="OrderKey"  [(ngModel)]="model!.OrderKey"/>
+              <label>Order Key</label><br />
+              <input type="number" class="form-control" name="OrderKey" [(ngModel)]="model!.OrderKey" />
             </div>
             <div class="col-md-12">
-              <label>Master Department</label><br/>
-              <select class="form-control" name="ParentDepartmentID"  [(ngModel)]="model!.ParentDepartmentID">
+              <label>Master Department</label><br />
+              <select class="form-control" name="ParentDepartmentID" [(ngModel)]="model!.ParentDepartmentID">
                 <option value="0">--Select--</option>
                 <option value="1">Deprt 1</option>
                 <option value="2">Deprt 2</option>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-12 mt-1">
               <button type="button" class="btn btn-primary" (click)="onSubmit()">SAVE</button>
-              <button type="button" class="btn btn-danger ml-2" (click) = "clearForm()">Clear Form</button>
+              <button type="button" class="btn btn-danger ml-2" (click)="clearForm()">Clear Form</button>
             </div>
           </div>
         </div>
@@ -35,29 +35,70 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-body">
-            <table class="table table-responsive table-striped">
-              <thead>
-                <tr>
-                  <th>Department Name</th>
-                  <th>Department Code</th>
-                  <th>Order Key</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of departmentList">
-                  <td>{{item.DepartmentName}}</td>
-                  <td>{{item.DepartmentCode}}</td>
-                  <td>{{item.OrderKey}}</td>
-                  <td>
-                    <button type="button" (click)="onEdit(item)" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>EDIT</button>
-                    <button type="button" (click)="onDelete(item.DepartmentID)" class="btn btn-danger btn-sm" style="margin-left:5px;"><i class="fa fa-trash"></i> Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <table class="table table-responsive table-striped">
+            <thead>
+              <tr>
+                <th>Department Name</th>
+                <th>Department Code</th>
+                <th>Order Key</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of departmentList">
+                <td>{{item.DepartmentName}}</td>
+                <td>{{item.DepartmentCode}}</td>
+                <td>{{item.OrderKey}}</td>
+                <td>
+                  <button type="button" (click)="onEdit(item)" class="btn btn-primary btn-sm"><i
+                      class="fa fa-edit"></i>EDIT</button>
+                  <button type="button" (click)="onDelete(item.DepartmentID)" class="btn btn-danger btn-sm"
+                    style="margin-left:5px;"><i class="fa fa-trash"></i> Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <hot-table class="hot" 
+        [data]="dataset" 
+        height="450" 
+        [colWidths]="[140, 126, 192, 100, 100, 90, 90, 110, 97]"
+        [afterGetColHeader]="alignHeaders" 
+        [colHeaders]="colHeaders" 
+        [rowHeaders]="true" 
+        [dropdownMenu]="true"
+        [hiddenColumns]="hiddenColumns" 
+        [contextMenu]="true" 
+        [multiColumnSorting]="true" 
+        [filters]="true"
+        [afterOnCellMouseDown]="changeCheckboxCell" 
+        [afterGetColHeader]="alignHeaders"
+        [afterGetRowHeader]="drawCheckboxInRowHeaders" 
+        [beforeRenderer]="addClassesToRows"
+        licenseKey="non-commercial-and-evaluation">
+        
+        <hot-column data="1"></hot-column>
+        <hot-column data="2"></hot-column>
+        <hot-column data="3"></hot-column>
+        <hot-column data="4" type="date" [allowInvalid]="false"></hot-column>
+        <hot-column data="5"></hot-column>
+        <hot-column data="6" type="checkbox" className="htCenter"></hot-column>
+        <hot-column data="7" type="numeric"></hot-column>
+        <hot-column data="7" type="numeric"></hot-column>
+        <hot-column data="7" type="numeric"></hot-column>
+
+      </hot-table>
+
+    </div>
+  </div> -->
+
+
+  <app-data-list [columns]="columns" [data]="departmentList"></app-data-list>
+
 </div>

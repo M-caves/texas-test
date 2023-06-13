@@ -1,0 +1,32 @@
+<h1>HELLO FROM NEXT COMPONENT- {{columns.length}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <hot-table 
+    [data]="data" 
+    [disableVisualSelection]="true" 
+    [rowHeaders]="true" 
+    [id]="id" 
+    [search]="true"
+    [filters]="true" 
+    [height]="'auto'" stretchH="all" [manualColumnResize]="true" [autoColumnSize]="true"
+      [manualColumnFreeze]="true" 
+      licenseKey="non-commercial-and-evaluation">
+      <ng-container *ngFor="let item of columns">
+        <ng-container *ngIf="item.keyValue !='action' && !item['customRender']&& !item['hasHtml']">
+          <hot-column [width]="item['width']?item['width']:'auto'" [data]="item?.keyValue" [title]="item?.keyName"
+            [editor]="true"></hot-column>
+        </ng-container>
+     
+        <ng-container *ngIf="item['hasHtml']">
+          <hot-column [width]="item['width']?item['width']:'auto'" [renderer]="html" [data]="item?.keyValue"
+            [title]="item?.keyName" [editor]="true"></hot-column>
+        </ng-container>
+        <!-- <ng-container *ngIf="item.keyValue == 'action'">
+          <hot-column [width]="item['width']?item['width']:'auto'" [data]="item?.keyValue" [editor]="false"
+            [title]="item?.keyName" [readOnly]="true" [renderer]="actionRenderee()"></hot-column>
+        </ng-container> -->
+      </ng-container>
+    </hot-table>
+  </div>
+</div>
